@@ -25,7 +25,7 @@ public class ParallelSample {
     ManagedExecutorService executor;
 
     public void execute() {
-        logger.info(">>>>> " + getClass().getSimpleName() + ".execute() start");
+        logger.info(">>>>> execute() start");
 
         //タスク一覧
         List<Supplier<Void>> taskList = new ArrayList<Supplier<Void>>(){{
@@ -50,16 +50,16 @@ public class ParallelSample {
                 logger.info("call whenComplete");
             }).join();
 
-        logger.info(">>>>> " + getClass().getSimpleName() + ".execute() end");
+        logger.info(">>>>> execute() end");
     }
 
     private Void task1() {
         IntStream.range(0, 10).forEach((i) -> {
             try {
-                logger.info("task1 (%d)", i);
+                logger.info("task1 ({})", i);
                 Thread.sleep(rnd.nextInt(1000));
             } catch (InterruptedException e) {
-                logger.error(e.getMessage());
+                logger.error("task1", e);
             }
         });
         logger.info("task1 completed!");
@@ -69,10 +69,10 @@ public class ParallelSample {
     private Void task2() {
         IntStream.range(0, 10).forEach((i) -> {
             try {
-                logger.info("task2 (%d)", i);
+                logger.info("task2 ({})", i);
                 Thread.sleep(rnd.nextInt(1000));
             } catch (InterruptedException e) {
-                logger.error(e.getMessage());
+                logger.error("task2", e);
             }
         });
         logger.info("task2 completed!");
