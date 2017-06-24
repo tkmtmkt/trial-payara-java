@@ -25,10 +25,11 @@ dependencies {
   runtime 'ch.qos.logback:logback-classic:1.2.3'
 
   //テストのコンパイルに使用する
-  testCompile 'javax:javaee-api:7.0'
   testCompile 'junit:junit:4.12'
   testCompile 'org.assertj:assertj-core:3.8.0'
   testCompile 'org.mockito:mockito-core:2.8.9'
+
+  testCompileOnly 'javax:javaee-api:7.0'
 
   //testCompile 'org.jboss.arquillian:arquillian-bom:1.1.13.Final'
   testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.13.Final'
@@ -39,8 +40,8 @@ dependencies {
   testRuntime 'fish.payara.extras:payara-embedded-all:4.1.2.172'
 }
 
-sourceCompatibility = '8'
-targetCompatibility = '8'
+sourceCompatibility = 8
+targetCompatibility = 8
 
 def defaultEncoding = 'UTF-8'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
@@ -49,9 +50,23 @@ compileJava {
   options.compilerArgs += ['-Xlint:all']
 }
 
+javadoc {
+  failOnError = false
+  options.charSet(defaultEncoding)
+}
+
 test {
   ignoreFailures = true
   testLogging {
     events 'started', 'skipped', 'passed', 'failed'
   }
+}
+
+task copyDependencies(type: Copy) {
+  from configurations.testRuntime {
+    exclude {
+      it.file.name.startsWith('study-')
+    }
+  }
+  into file("$rootDir/libext")
 }
