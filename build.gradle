@@ -5,41 +5,6 @@ version = '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-repositories {
-  flatDir {
-    dirs "$rootDir/lib"
-  }
-}
-
-dependencies {
-  //コンパイルに使用する（配布モジュールに含める）
-  compile 'com.google.guava:guava:22.0'
-  compile 'com.google.inject:guice:4.1.0'
-  compile 'org.slf4j:slf4j-api:1.7.25'
-
-  //コンパイルに使用する（配布モジュールに含めない）
-  compileOnly 'javax:javaee-api:7.0'
-
-  //実行に使用する（配布モジュールに含める）
-  //runtime 'org.slf4j:slf4j-simple:1.7.25'
-  runtime 'ch.qos.logback:logback-classic:1.2.3'
-
-  //テストのコンパイルに使用する
-  testCompile 'junit:junit:4.12'
-  testCompile 'org.assertj:assertj-core:3.8.0'
-  testCompile 'org.mockito:mockito-core:2.8.9'
-
-  testCompileOnly 'javax:javaee-api:7.0'
-
-  //testCompile 'org.jboss.arquillian:arquillian-bom:1.1.13.Final'
-  testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.13.Final'
-  testCompile 'org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.0.Final'
-
-  //テストの実行に使用する
-  testRuntime 'fish.payara.api:payara-api:4.1.2.172'
-  testRuntime 'fish.payara.extras:payara-embedded-all:4.1.2.172'
-}
-
 sourceCompatibility = 8
 targetCompatibility = 8
 
@@ -69,4 +34,39 @@ task copyDependencies(type: Copy) {
     }
   }
   into file("$rootDir/libext")
+}
+
+repositories {
+  flatDir {
+    dirs "$rootDir/lib"
+  }
+}
+
+dependencies {
+  //プロダクト用（コンパイル、実行、配布）
+  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'com.google.guava:guava:22.0'
+  compile 'com.google.inject:guice:4.1.0'
+  compile 'com.ancientprogramming.fixedformat4j:fixedformat4j:1.2.2'
+
+  //プロダクト用（コンパイル）
+  compileOnly 'javax:javaee-api:7.0'
+  compileOnly 'org.projectlombok:lombok:1.16.16'
+
+  //プロダクト用（実行、配布）
+  runtime 'ch.qos.logback:logback-classic:1.2.3'
+
+  //テスト用（コンパイル、実行）
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.assertj:assertj-core:3.8.0'
+  testCompile 'org.mockito:mockito-core:2.8.9'
+  testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.13.Final'
+  testCompile 'org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.0.Final'
+
+  //テスト用（コンパイル）
+  testCompileOnly 'javax:javaee-api:7.0'
+
+  //テスト用（実行）
+  testRuntime 'fish.payara.api:payara-api:4.1.2.172'
+  testRuntime 'fish.payara.extras:payara-embedded-all:4.1.2.172'
 }

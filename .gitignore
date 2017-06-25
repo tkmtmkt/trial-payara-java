@@ -1,2 +1,8 @@
-build/
+*.classes
+*.jar
+*.war
+*.ear
+
+# gradle files
 .gradle/
+build/
