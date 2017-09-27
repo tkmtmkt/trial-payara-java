@@ -1,8 +1,20 @@
-*.classes
+# Java
+*.class
 *.jar
 *.war
 *.ear
 
-# gradle files
+# Gradle
 .gradle/
+!gradle-wrapper.jar
 build/
+
+# IDEA
+.idea/
+out/
+
+# Elcipse
+.project
+.classpath
+.settings/
+bin/
