@@ -1,0 +1,4 @@
+include 'SampleEAR'
+include 'SampleEJB'
+include 'SampleTest'
+rootProject.name = 'study-payara-java'
