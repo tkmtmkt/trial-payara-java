@@ -60,10 +60,11 @@ subprojects {
     testCompileOnly 'javax:javaee-api:7.0'
 
     //テスト用（実行）
-    testRuntime 'org.jboss.arquillian.container:arquillian-glassfish-remote-3.1:1.0.1'
-    //testRuntime 'org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.1'
-    //testRuntime 'fish.payara.api:payara-api:4.1.2.172'
-    //testRuntime 'fish.payara.extras:payara-embedded-all:4.1.2.172'
+    testRuntime 'fish.payara.arquillian:arquillian-payara-server-4-remote:1.0.Beta2'
+    //testRuntime 'fish.payara.arquillian:arquillian-payara-server-4-embedded:1.0.Beta2'
+
+    testRuntime 'fish.payara.api:payara-api:4.1.2.172'
+    testRuntime 'fish.payara.extras:payara-embedded-all:4.1.2.172'
   }
 
   task copyDependencies(type: Copy) {
