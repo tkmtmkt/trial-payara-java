@@ -1,4 +1,10 @@
-include 'SampleEAR'
-include 'SampleEJB'
-include 'SampleTest'
+include 'ears:AppleEAR'
+include 'ears:OrangeEAR'
+
+include 'jars:AppleEJB'
+include 'jars:OrangeEJB'
+
+include 'jars:EmbeddedTest'
+include 'jars:RemoteTest'
+
 rootProject.name = 'study-payara-java'

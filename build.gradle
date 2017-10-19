@@ -54,15 +54,11 @@ subprojects {
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.8.0'
     testCompile 'org.mockito:mockito-core:2.10.0'
-    testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.13.Final'
 
     //テスト用（コンパイル）
     testCompileOnly 'javax:javaee-api:7.0'
 
     //テスト用（実行）
-    testRuntime 'fish.payara.arquillian:arquillian-payara-server-4-remote:1.0.Beta2'
-    //testRuntime 'fish.payara.arquillian:arquillian-payara-server-4-embedded:1.0.Beta2'
-
     testRuntime 'fish.payara.api:payara-api:4.1.2.172'
     testRuntime 'fish.payara.extras:payara-embedded-all:4.1.2.172'
   }

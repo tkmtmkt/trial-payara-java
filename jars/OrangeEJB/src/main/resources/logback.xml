@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%m%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>study-payara-java.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%date [%thread] [%-5level] %logger{20} - %message%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.github.tkmtmkt">
+    <appender-ref ref="FILE" />
+  </logger>
+
+  <root>
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
