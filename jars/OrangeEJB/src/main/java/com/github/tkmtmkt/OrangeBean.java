@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Stateless
 public class OrangeBean implements Orange {
+    @Override
     public void execute() {
         log.info(">>>>> execute() start");
     }

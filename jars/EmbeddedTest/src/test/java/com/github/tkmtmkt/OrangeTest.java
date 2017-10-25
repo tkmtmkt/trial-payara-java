@@ -29,7 +29,6 @@ public class OrangeTest {
                 .addAsWebInfResource(new File("src/test/resources/web.xml"))
                 .addAsWebInfResource(new File("src/test/resources/glassfish-web.xml"))
                 .addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-
         System.out.println(war.toString(true));
 
         return war;

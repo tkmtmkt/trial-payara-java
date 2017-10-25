@@ -68,7 +68,7 @@
   </nodes>
   <configs>
     <config name="server-config">
-      <system-property name="JMS_PROVIDER_PORT" description="JMS" value="7676"></system-property>
+      <system-property name="JMS_PROVIDER_PORT" value="50076"></system-property>
       <http-service>
         <access-log></access-log>
         <virtual-server network-listeners="http-listener-1,http-listener-2" id="server"></virtual-server>
@@ -76,17 +76,17 @@
       </http-service>
       <iiop-service>
         <orb use-thread-pool-ids="thread-pool-1"></orb>
-        <iiop-listener address="0.0.0.0" port="3700" lazy-init="true" id="orb-listener-1"></iiop-listener>
+        <iiop-listener address="0.0.0.0" port="50037" lazy-init="true" id="orb-listener-1"></iiop-listener>
         <ssl></ssl>
-        <iiop-listener address="0.0.0.0" port="3820" id="SSL" security-enabled="true">
+        <iiop-listener address="0.0.0.0" port="50038" id="SSL" security-enabled="true">
           <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
         </iiop-listener>
-        <iiop-listener address="0.0.0.0" port="3920" id="SSL_MUTUALAUTH" security-enabled="true">
+        <iiop-listener address="0.0.0.0" port="50039" id="SSL_MUTUALAUTH" security-enabled="true">
           <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as" client-auth-enabled="true"></ssl>
         </iiop-listener>
       </iiop-service>
       <admin-service system-jmx-connector-name="system" type="das-and-server">
-        <jmx-connector address="0.0.0.0" port="8686" name="system" auth-realm-name="admin-realm" security-enabled="false"></jmx-connector>
+        <jmx-connector address="0.0.0.0" port="50086" name="system" auth-realm-name="admin-realm" security-enabled="false"></jmx-connector>
         <property name="adminConsoleContextRoot" value="/admin"></property>
         <property name="adminConsoleDownloadLocation" value="${com.sun.aas.installRoot}/lib/install/applications/admingui.war"></property>
         <property name="ipsRoot" value="${com.sun.aas.installRoot}/.."></property>
@@ -118,7 +118,6 @@
       <ejb-container>
         <ejb-timer-service></ejb-timer-service>
       </ejb-container>
-      <cdi-service></cdi-service>
       <diagnostic-service></diagnostic-service>
       <security-service>
         <auth-realm classname="com.sun.enterprise.security.auth.realm.file.FileRealm" name="admin-realm">
@@ -181,7 +180,7 @@
         </message-security-config>
         <property name="default-digest-algorithm" value="SHA-256"></property>
       </security-service>
-      <java-config classpath-suffix="" debug-options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9009" system-classpath="">
+      <java-config classpath-suffix="" debug-options="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=50009" system-classpath="">
         <jvm-options>-XX:MaxPermSize=192m</jvm-options>
         <jvm-options>-client</jvm-options>
         <jvm-options>-Djava.awt.headless=true</jvm-options>
@@ -201,7 +200,7 @@
         <jvm-options>-DANTLR_USE_DIRECT_CLASS_LOADING=true</jvm-options>
         <jvm-options>-Dcom.sun.enterprise.config.config_environment_factory_class=com.sun.enterprise.config.serverbeans.AppserverConfigEnvironmentFactory</jvm-options>
         <jvm-options>-Dorg.glassfish.additionalOSGiBundlesToStart=org.apache.felix.shell,org.apache.felix.gogo.runtime,org.apache.felix.gogo.shell,org.apache.felix.gogo.command,org.apache.felix.shell.remote,org.apache.felix.fileinstall</jvm-options>
-        <jvm-options>-Dosgi.shell.telnet.port=6666</jvm-options>
+        <jvm-options>-Dosgi.shell.telnet.port=50066</jvm-options>
         <jvm-options>-Dosgi.shell.telnet.maxconn=1</jvm-options>
         <jvm-options>-Dosgi.shell.telnet.ip=127.0.0.1</jvm-options>
         <jvm-options>-Dgosh.args=--nointeractive</jvm-options>
@@ -238,9 +237,9 @@
           </protocol>
         </protocols>
         <network-listeners>
-          <network-listener protocol="http-listener-1" port="8080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"></network-listener>
-          <network-listener protocol="http-listener-2" port="8181" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"></network-listener>
-          <network-listener protocol="admin-listener" port="4848" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"></network-listener>
+          <network-listener protocol="http-listener-1" port="50080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"></network-listener>
+          <network-listener protocol="http-listener-2" port="50081" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"></network-listener>
+          <network-listener protocol="admin-listener" port="50048" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"></network-listener>
         </network-listeners>
         <transports>
           <transport name="tcp"></transport>
@@ -261,9 +260,9 @@
     </config>
   </configs>
   <property name="administrative.domain.name" value="test"></property>
-  <secure-admin special-admin-indicator="a4b94ef5-d1c8-476d-900b-e10054999d03">
-    <secure-admin-principal dn="CN=BROWN,OU=Payara,O=Payara Foundation,L=Great Malvern,ST=Worcestershire,C=UK"></secure-admin-principal>
-    <secure-admin-principal dn="CN=BROWN-instance,OU=Payara,O=Payara Foundation,L=Great Malvern,ST=Worcestershire,C=UK"></secure-admin-principal>
+  <secure-admin special-admin-indicator="17b0c144-7845-4f7a-825e-58efd6f4a5b7">
+    <secure-admin-principal dn="CN=localhost,OU=Payara,O=Payara Foundation,L=Great Malvern,ST=Worcestershire,C=UK"></secure-admin-principal>
+    <secure-admin-principal dn="CN=localhost-instance,OU=Payara,O=Payara Foundation,L=Great Malvern,ST=Worcestershire,C=UK"></secure-admin-principal>
   </secure-admin>
   <clusters></clusters>
   <applications></applications>

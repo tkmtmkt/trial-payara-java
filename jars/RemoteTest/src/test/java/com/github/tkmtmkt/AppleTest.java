@@ -18,18 +18,19 @@ import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class AppleTest {
-    @EJB
+    @EJB(name="ejb/Apple")
     private Apple sut;
 
     @Deployment
     public static Archive<?> createDeployment() {
         System.out.println(">>>>> @Deployment");
         final WebArchive war = ShrinkWrap.create(WebArchive.class, "AppleEARTest.war")
-                .addAsLibraries(new File("../AppleEJB/build/libs/AppleEJB-1.0-SNAPSHOT.jar"))
+                .addClass(Apple.class)
+                .addClass(AppleTest.class)
+                //.addAsLibrary("")
                 .addAsWebInfResource(new File("src/test/resources/web.xml"))
                 .addAsWebInfResource(new File("src/test/resources/glassfish-web.xml"))
                 .addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-
         System.out.println(war.toString(true));
 
         return war;

@@ -18,18 +18,19 @@ import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class OrangeTest {
-    @EJB
+    @EJB(name="ejb/Orange")
     private Orange sut;
 
     @Deployment
     public static Archive<?> createDeployment() {
         System.out.println(">>>>> @Deployment");
         final WebArchive war = ShrinkWrap.create(WebArchive.class, "OrangeEARTest.war")
-                .addAsLibraries(new File("../OrangeEJB/build/libs/OrangeEJB-1.0-SNAPSHOT.jar"))
+                .addClass(Orange.class)
+                .addClass(OrangeTest.class)
+                //.addAsLibrary("")
                 .addAsWebInfResource(new File("src/test/resources/web.xml"))
                 .addAsWebInfResource(new File("src/test/resources/glassfish-web.xml"))
                 .addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
-
         System.out.println(war.toString(true));
 
         return war;
