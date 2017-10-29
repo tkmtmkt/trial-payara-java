@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @LocalBean
 @Stateless
 public class Apple implements AppleRemote {
-    @EJB
+    @EJB(name="ejb/OrangeRemote")
     OrangeRemote orange;
 
     @Override
