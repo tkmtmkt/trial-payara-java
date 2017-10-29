@@ -1,5 +1,3 @@
-apply plugin: 'ear'
-
 dependencies {
   deploy project(':jars:OrangeEJB')
   earlib(project(':jars:OrangeEJB')) {

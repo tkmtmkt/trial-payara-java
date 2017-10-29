@@ -5,7 +5,7 @@ include 'jars:RemoteInterface'
 include 'jars:AppleEJB'
 include 'jars:OrangeEJB'
 
-include 'jars:EmbeddedTest'
-include 'jars:RemoteTest'
+include 'test:EmbeddedTest'
+include 'test:RemoteTest'
 
 rootProject.name = 'study-payara-java'
