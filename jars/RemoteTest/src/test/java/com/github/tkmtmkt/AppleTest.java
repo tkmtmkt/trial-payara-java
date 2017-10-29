@@ -19,14 +19,15 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class AppleTest {
     @EJB(name="ejb/Apple")
-    private Apple sut;
+    private AppleRemote sut;
 
     @Deployment
     public static Archive<?> createDeployment() {
         System.out.println(">>>>> @Deployment");
         final WebArchive war = ShrinkWrap.create(WebArchive.class, "AppleEARTest.war")
-                .addClass(Apple.class)
                 .addClass(AppleTest.class)
+                .addClass(AppleRemote.class)
+                .addClass(OrangeRemote.class)
                 //.addAsLibrary("")
                 .addAsWebInfResource(new File("src/test/resources/web.xml"))
                 .addAsWebInfResource(new File("src/test/resources/glassfish-web.xml"))

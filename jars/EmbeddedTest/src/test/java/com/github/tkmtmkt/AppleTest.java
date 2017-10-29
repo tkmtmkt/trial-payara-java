@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class AppleTest {
     @EJB
-    private Apple sut;
+    private AppleRemote sut;
 
     @Deployment
     public static Archive<?> createDeployment() {

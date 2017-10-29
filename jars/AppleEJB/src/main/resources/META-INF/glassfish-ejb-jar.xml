@@ -5,11 +5,11 @@
 <glassfish-ejb-jar>
   <enterprise-beans>
     <ejb>
-      <ejb-name>AppleBean</ejb-name>
-      <jndi-name>com.github.tkmtmkt.Apple</jndi-name>
+      <ejb-name>Apple</ejb-name>
+      <jndi-name>com.github.tkmtmkt.AppleRemote</jndi-name>
       <ejb-ref>
-        <ejb-ref-name>ejb/Orange</ejb-ref-name>
-        <jndi-name>corbaname:iiop:localhost:50237#com.github.tkmtmkt.Orange</jndi-name>
+        <ejb-ref-name>ejb/OrangeRemote</ejb-ref-name>
+        <jndi-name>corbaname:iiop:localhost:50237#com.github.tkmtmkt.OrangeRemote</jndi-name>
       </ejb-ref>
     </ejb>
   </enterprise-beans>

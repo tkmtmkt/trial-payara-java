@@ -22,7 +22,7 @@ public class ParallelSampleTest {
     //@EJB(mappedName = "java:global/SampleEAR-1.0-SNAPSHOT/SampleEJB-1.0-SNAPSHOT/ParallelSample")
     //@EJB(mappedName = "java:global/SampleEAR-1.0-SNAPSHOT/SampleEJB-1.0-SNAPSHOT/ParallelSample!com.github.tkmtmkt.ParallelSample")
     @Inject
-    private Apple sut;
+    private AppleRemote sut;
 
     @Deployment
     public static Archive<?> createDeployment() {

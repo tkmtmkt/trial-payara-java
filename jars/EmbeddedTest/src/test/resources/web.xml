@@ -2,13 +2,13 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <ejb-ref>
-    <ejb-ref-name>ejb/Apple</ejb-ref-name>
+    <ejb-ref-name>ejb/AppleRemote</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
-    <remote>com.github.tkmtmkt.Apple</remote>
+    <remote>com.github.tkmtmkt.AppleRemote</remote>
   </ejb-ref>
   <ejb-ref>
-    <ejb-ref-name>ejb/Orange</ejb-ref-name>
+    <ejb-ref-name>ejb/OrangeRemote</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
-    <remote>com.github.tkmtmkt.Orange</remote>
+    <remote>com.github.tkmtmkt.OrangeRemote</remote>
   </ejb-ref>
 </web-app>

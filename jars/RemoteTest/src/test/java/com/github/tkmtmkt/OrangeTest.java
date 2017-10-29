@@ -19,13 +19,13 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class OrangeTest {
     @EJB(name="ejb/Orange")
-    private Orange sut;
+    private OrangeRemote sut;
 
     @Deployment
     public static Archive<?> createDeployment() {
         System.out.println(">>>>> @Deployment");
         final WebArchive war = ShrinkWrap.create(WebArchive.class, "OrangeEARTest.war")
-                .addClass(Orange.class)
+                .addClass(OrangeRemote.class)
                 .addClass(OrangeTest.class)
                 //.addAsLibrary("")
                 .addAsWebInfResource(new File("src/test/resources/web.xml"))

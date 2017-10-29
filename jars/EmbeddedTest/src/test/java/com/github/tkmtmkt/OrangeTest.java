@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class OrangeTest {
     @EJB
-    private Orange sut;
+    private OrangeRemote sut;
 
     @Deployment
     public static Archive<?> createDeployment() {

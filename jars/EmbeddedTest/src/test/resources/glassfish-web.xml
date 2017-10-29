@@ -4,11 +4,11 @@
   "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
 <glassfish-web-app>
   <ejb-ref>
-    <ejb-ref-name>ejb/Apple</ejb-ref-name>
-    <jndi-name>com.github.tkmtmkt.Apple</jndi-name>
+    <ejb-ref-name>ejb/AppleRemote</ejb-ref-name>
+    <jndi-name>com.github.tkmtmkt.AppleRemote</jndi-name>
   </ejb-ref>
   <ejb-ref>
-    <ejb-ref-name>ejb/Orange</ejb-ref-name>
-    <jndi-name>com.github.tkmtmkt.Orange</jndi-name>
+    <ejb-ref-name>ejb/OrangeRemote</ejb-ref-name>
+    <jndi-name>com.github.tkmtmkt.OrangeRemote</jndi-name>
   </ejb-ref>
 </glassfish-web-app>
