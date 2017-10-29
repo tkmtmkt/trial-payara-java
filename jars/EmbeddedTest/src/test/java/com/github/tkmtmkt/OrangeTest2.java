@@ -20,9 +20,9 @@ import org.junit.runner.RunWith;
 import com.github.tkmtmkt.test.rules.TestFixture;
 
 @RunWith(Arquillian.class)
-public class AppleTest {
+public class OrangeTest2 {
     @Inject
-    private Apple sut;
+    private Orange sut;
 
     @Rule
     public TestFixture fixture = new TestFixture();
@@ -30,8 +30,7 @@ public class AppleTest {
     @Deployment
     public static Archive<?> createDeployment() {
         System.out.println(">>>>> @Deployment");
-        final WebArchive war = ShrinkWrap.create(WebArchive.class, "AppleEARTest.war")
-                .addAsLibraries(new File("../AppleEJB/build/libs/AppleEJB-1.0-SNAPSHOT.jar"))
+        final WebArchive war = ShrinkWrap.create(WebArchive.class, "OrangeEARTest.war")
                 .addAsLibraries(new File("../OrangeEJB/build/libs/OrangeEJB-1.0-SNAPSHOT.jar"))
                 .addAsWebInfResource(new File("src/test/resources/web.xml"))
                 .addAsWebInfResource(new File("src/test/resources/glassfish-web.xml"))
@@ -43,7 +42,7 @@ public class AppleTest {
 
     @Test
     public void testExecute() {
-        System.out.println(">>>>>>> @Test");
+        System.out.println(">>>>> @Test");
         assertThat(sut).isNotNull();
         sut.execute();
     }

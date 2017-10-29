@@ -1,6 +1,7 @@
 include 'ears:AppleEAR'
 include 'ears:OrangeEAR'
 
+include 'jars:RemoteInterface'
 include 'jars:AppleEJB'
 include 'jars:OrangeEJB'
 

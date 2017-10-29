@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
 import com.github.tkmtmkt.test.rules.TestFixture;
 
 @RunWith(Arquillian.class)
-public class AppleTest {
+public class AppleTest2 {
     @Inject
     private Apple sut;
 
