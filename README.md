@@ -9,26 +9,31 @@ JavaEEサンプル
 payaraドメイン作成
 
 ```sh
-ii $Home/apps/payara41/bin/asadmin
-```
-```
-create-domain --keytooloptions CN=localhost test
-start-domain test
-login
+# 管理コンソール起動
+PS> & $Home/apps/payara41/bin/asadmin
 
-set *.system-property.JMS_PROVIDER_PORT.description=''
-
+# ドメイン作成
+asadmin> create-domain --keytooloptions CN=localhost test
+asadmin> start-domain test
+asadmin> login
 ```
 
-payaraクラスタ／インスタンス作成
+管理用WEBコンソール起動、ログイン
+※起動、ログインによりデフォルト値を生成されてdomain.xmlに反映される
 
-```
-create-cluster AppleCluster
-create-cluster OrangeCluster
+http://localhost:4848
 
-create-instance --node localhost-test --cluster AppleCluster --portbase 50100 AppleInstance
-create-instance --node localhost-test --cluster OrangeCluster --portbase 50200 OrangeInstance
+```sh
+# payara-mlの場合、日本語コメントが起動エラーの原因になるため削除する
+asadmin> set *.system-property.JMS_PROVIDER_PORT.description=''
 
+# payaraクラスタ作成
+asadmin> create-cluster AppleCluster
+asadmin> create-cluster OrangeCluster
+
+# payaraインスタンス作成
+asadmin> create-instance --node localhost-test --cluster AppleCluster --portbase 50100 AppleInstance
+asadmin> create-instance --node localhost-test --cluster OrangeCluster --portbase 50200 OrangeInstance
 ```
 
 * 管理ポート: portbase + 48
@@ -49,15 +54,21 @@ create-instance --node localhost-test --cluster OrangeCluster --portbase 50200 O
 payara起動
 
 ```sh
-ii $Home/apps/payara41/bin/asadmin
-```
-```
-start-instance AppleInstance
-start-instance OrangeInstance
-list-instances
-```
-```sh
-LogExpert $Home/apps/payara41/glassfish/domains/test/logs/server.log `
+# 管理コンソール起動
+PS> & $Home/apps/payara41/bin/asadmin
+
+# ドメイン起動
+asadmin> start-domain test
+
+# インスタンス起動
+asadmin> start-instance AppleInstance
+asadmin> start-instance OrangeInstance
+
+# 確認
+asadmin> list-instances
+
+# ログ表示
+PS> LogExpert $Home/apps/payara41/glassfish/domains/test/logs/server.log `
     $Home/apps/payara41/glassfish/nodes/localhost-test/AppleInstance/logs/server.log `
     $Home/apps/payara41/glassfish/nodes/localhost-test/OrangeInstance/logs/server.log
 ```
@@ -65,26 +76,28 @@ LogExpert $Home/apps/payara41/glassfish/domains/test/logs/server.log `
 アプリケーション配布
 
 ```sh
-./gradlew clean assemble
-```
-```
-undeploy --cascade=true --target AppleCluster AppleEAR-1.0-SNAPSHOT
-deploy --force=true --target AppleCluster 'C:/Users/Public/repos/git/study/study-payara-java/ears/AppleEAR/build/libs/AppleEAR-1.0-SNAPSHOT.ear'
+# 配布アプリケーション作成
+PS> ./gradlew clean assemble
 
-undeploy --cascade=true --target OrangeCluster OrangeEAR-1.0-SNAPSHOT
-deploy --force=true --target OrangeCluster 'C:/Users/Public/repos/git/study/study-payara-java/ears/OrangeEAR/build/libs/OrangeEAR-1.0-SNAPSHOT.ear'
+# AppleEAR配布
+asadmin> undeploy --cascade=true --target AppleCluster AppleEAR-1.0-SNAPSHOT
+asadmin> deploy --force=true --target AppleCluster 'C:/Users/Public/repos/git/study/study-payara-java/ears/AppleEAR/build/libs/AppleEAR-1.0-SNAPSHOT.ear'
 
+# OrangeEAR配布
+asadmin> undeploy --cascade=true --target OrangeCluster OrangeEAR-1.0-SNAPSHOT
+asadmin> deploy --force=true --target OrangeCluster 'C:/Users/Public/repos/git/study/study-payara-java/ears/OrangeEAR/build/libs/OrangeEAR-1.0-SNAPSHOT.ear'
 ```
 
 テスト実行
 
 ```sh
-./gradlew jars:EmbeddedTest:test -i
-ii ./jars/EmbeddedTest/build/reports/tests/test/index.html
+# payara-embeddedによるテスト
+PS> ./gradlew test:EmbeddedTest:test -i
+PS> ii ./test/EmbeddedTest/build/reports/tests/test/index.html
 
-./gradlew jars:RemoteTest:test -i
-ii ./jars/RemoteTest/build/reports/tests/test/index.html
-
+# payra-serverによるテスト
+PS> ./gradlew test:RemoteTest:test -i
+PS> ii ./test/RemoteTest/build/reports/tests/test/index.html
 ```
 
 
@@ -94,20 +107,27 @@ ii ./jars/RemoteTest/build/reports/tests/test/index.html
 EmbeddedTest用のdomein.xmlファイル作成
 
 ```sh
-ii $Home/apps/payara41/bin/asadmin --port 50048
+# 管理コンソール起動
+PS> & $Home/apps/payara41/bin/asadmin --port 50048
+
+# ドメイン作成
+asadmin> create-domain --portbase 50000 --keytooloptions CN=localhost test
+asadmin> start-domain test
+asadmin> login
 ```
-```
-create-domain --portbase 50000 --keytooloptions CN=localhost test
-start-domain test
-login
 
-set *.system-property.JMS_PROVIDER_PORT.description=''
+管理用WEBコンソール起動、ログイン
+※起動、ログインによりデフォルト値を生成されてdomain.xmlに反映される
 
-create-cluster AppleCluster
-create-instance --node localhost-test --cluster AppleCluster AppleInstance
-delete-instance AppleInstance
-delete-cluster AppleCluster
+http://localhost:50048
 
+```sh
+# payara-mlの場合、日本語コメントが起動エラーの原因になるため削除する
+asadmin> set *.system-property.JMS_PROVIDER_PORT.description=''
+
+# クラスタ作成／削除（デフォルト値を生成されてdomain.xmlに反映される）
+asadmin> create-cluster dummy
+asadmin> delete-cluster dummy
 ```
 
 
