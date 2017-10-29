@@ -46,9 +46,6 @@ configure([project(':jars'), project(':test')]) {
     dependencies {
       //プロダクト用（コンパイル、実行、配布）
       compile 'org.slf4j:slf4j-api:1.7.25'
-      compile 'com.google.guava:guava:23.0'
-      compile 'com.google.inject:guice:4.1.0'
-      compile 'com.ancientprogramming.fixedformat4j:fixedformat4j:1.2.2'
 
       //プロダクト用（コンパイル）
       compileOnly 'javax:javaee-api:7.0'

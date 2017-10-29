@@ -9,7 +9,7 @@
       <property name="adminHttps">false</property>
       <property name="adminUser">admin</property>
       <property name="adminPassword">admin</property>
-      <property name="target">server</property>
+      <property name="target">TestInstance</property>
     </configuration>
   </container>
 </arquillian>

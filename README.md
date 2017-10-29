@@ -32,6 +32,7 @@ asadmin> create-cluster AppleCluster
 asadmin> create-cluster OrangeCluster
 
 # payaraインスタンス作成
+asadmin> create-instance --node localhost-test --portbase 20000 TestInstance
 asadmin> create-instance --node localhost-test --cluster AppleCluster --portbase 50100 AppleInstance
 asadmin> create-instance --node localhost-test --cluster OrangeCluster --portbase 50200 OrangeInstance
 ```
@@ -61,6 +62,7 @@ PS> & $Home/apps/payara41/bin/asadmin
 asadmin> start-domain test
 
 # インスタンス起動
+asadmin> start-instance TestInstance
 asadmin> start-instance AppleInstance
 asadmin> start-instance OrangeInstance
 
@@ -69,6 +71,7 @@ asadmin> list-instances
 
 # ログ表示
 PS> LogExpert $Home/apps/payara41/glassfish/domains/test/logs/server.log `
+    $Home/apps/payara41/glassfish/nodes/localhost-test/TestInstance/logs/server.log `
     $Home/apps/payara41/glassfish/nodes/localhost-test/AppleInstance/logs/server.log `
     $Home/apps/payara41/glassfish/nodes/localhost-test/OrangeInstance/logs/server.log
 ```
