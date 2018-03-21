@@ -4,3 +4,8 @@ dependencies {
     exclude group: 'com.github.tkmtmkt', module: 'AppleEJB'
   }
 }
+ear {
+  deploymentDescriptor {
+    module("AppleEJB-1.0-SNAPSHOT.jar", "java")
+  }
+}
