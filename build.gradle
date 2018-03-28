@@ -12,9 +12,13 @@ allprojects {
   }
 }
 
-configure([project(':jars'), project(':test')]) {
+configure([project(':wars'), project(':jars'), project(':test')]) {
   subprojects {
-    apply plugin: 'java'
+    if (project.parent == project(':wars')) {
+      apply plugin: 'war'
+    } else {
+      apply plugin: 'java'
+    }
 
     sourceCompatibility = 8
     targetCompatibility = 8
@@ -45,6 +49,7 @@ configure([project(':jars'), project(':test')]) {
       //プロダクト用（コンパイル）
       compileOnly 'javax:javaee-api:7.0'
       compileOnly 'org.projectlombok:lombok:1.16.18'
+      compileOnly 'org.jboss.resteasy:resteasy-jaxrs:3.5.0.Final'
 
       //プロダクト用（実行、配布）
       runtime 'ch.qos.logback:logback-classic:1.2.3'
