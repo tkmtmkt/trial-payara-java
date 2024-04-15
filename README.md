@@ -1,4 +1,4 @@
-study-payara-java
+trial-payara-java
 =================
 
 JavaEEサンプル
